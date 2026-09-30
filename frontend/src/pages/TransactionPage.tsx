@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AnimatedPage } from "../components/AnimatedPage";
 
-const API_BASE_URL = "http://localhost:5171"; // change if your API uses another port
 
 type TransactionTypeValue = 0 | 1 | 2; // 0 = Expense, 1 = Income, 2 = Transfer
 
@@ -55,9 +54,9 @@ function TransactionsPage() {
                 setError(null);
 
                 const [txRes, accRes, catRes] = await Promise.all([
-                    axios.get<Transaction[]>(`${API_BASE_URL}/api/Transactions`),
-                    axios.get<Account[]>(`${API_BASE_URL}/api/Accounts`),
-                    axios.get<Category[]>(`${API_BASE_URL}/api/Categories`),
+                    axios.get<Transaction[]>(`/api/Transactions`),
+                    axios.get<Account[]>(`/api/Accounts`),
+                    axios.get<Category[]>(`/api/Categories`),
                 ]);
 
                 setTransactions(txRes.data);
@@ -110,7 +109,7 @@ function TransactionsPage() {
             setLoadingForm(true);
             setError(null);
 
-            await axios.post(`${API_BASE_URL}/api/Transactions`, {
+            await axios.post(`/api/Transactions`, {
                 accountId,
                 categoryId: categoryId || null,
                 amount: parsedAmount,
@@ -122,7 +121,7 @@ function TransactionsPage() {
 
             // reload list after creation
             const txRes = await axios.get<Transaction[]>(
-                `${API_BASE_URL}/api/Transactions`
+                `/api/Transactions`
             );
             setTransactions(txRes.data);
 

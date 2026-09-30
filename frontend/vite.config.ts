@@ -8,4 +8,10 @@ export default defineConfig({
         react(),
         tailwindcss(), // 👈 this wires Tailwind into Vite
     ],
+    // In dev, forward /api to the local backend (in the cluster, the ingress does this)
+    server: {
+        proxy: {
+            "/api": "http://localhost:5171",
+        },
+    },
 });

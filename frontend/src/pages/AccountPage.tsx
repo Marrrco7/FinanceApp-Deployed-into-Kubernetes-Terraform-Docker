@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AnimatedPage } from "../components/AnimatedPage";
 
-const API_BASE_URL = "http://localhost:5171"; // change port if needed
 
 type AccountTypeValue = 0 | 1 | 2 | 3 | 4; // Cash, Bank, CreditCard, Savings, Investment
 
@@ -31,7 +30,7 @@ function AccountsPage() {
                 setError(null);
 
                 const response = await axios.get<Account[]>(
-                    `${API_BASE_URL}/api/Accounts`
+                    `/api/Accounts`
                 );
                 setAccounts(response.data);
             } catch (err) {
@@ -80,7 +79,7 @@ function AccountsPage() {
             setSaving(true);
             setError(null);
 
-            await axios.post(`${API_BASE_URL}/api/Accounts`, {
+            await axios.post(`/api/Accounts`, {
                 name,
                 accountType,
                 initialBalance: parsedBalance,
@@ -88,7 +87,7 @@ function AccountsPage() {
 
             // reload accounts
             const response = await axios.get<Account[]>(
-                `${API_BASE_URL}/api/Accounts`
+                `/api/Accounts`
             );
             setAccounts(response.data);
 

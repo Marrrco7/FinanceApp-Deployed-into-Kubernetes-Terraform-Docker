@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5171"; // 🔴 change port if your API runs on a different one
 
 type CategoryTypeValue = 0 | 1; // 0 = Expense, 1 = Income
 
@@ -30,7 +29,7 @@ function CategoriesPage() {
                 setError(null);
 
                 const response = await axios.get<Category[]>(
-                    `${API_BASE_URL}/api/Categories`
+                    `/api/Categories`
                 );
                 setCategories(response.data);
             } catch (err) {
@@ -59,7 +58,7 @@ function CategoriesPage() {
             setSaving(true);
             setError(null);
 
-            await axios.post(`${API_BASE_URL}/api/Categories`, {
+            await axios.post(`/api/Categories`, {
                 name,
                 categoryType,
                 color,
@@ -67,7 +66,7 @@ function CategoriesPage() {
 
             // reload categories
             const response = await axios.get<Category[]>(
-                `${API_BASE_URL}/api/Categories`
+                `/api/Categories`
             );
             setCategories(response.data);
 

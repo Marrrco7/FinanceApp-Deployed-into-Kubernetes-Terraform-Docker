@@ -1,7 +1,15 @@
 .idea
 .idea.FinanceApp
-.financeapp.db
 .DS_Store
+
+# .NET build output
+bin/
+obj/
+
+# Local SQLite database (created by migrations, never committed)
+*.db
+*.db-shm
+*.db-wal
 *.log
 node_modules
 dist
@@ -14,5 +22,3 @@ dist
 coverage
 *.iml
 out
-*.bin
-*.obj

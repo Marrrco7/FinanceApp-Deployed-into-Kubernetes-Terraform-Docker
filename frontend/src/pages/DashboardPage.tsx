@@ -19,7 +19,6 @@ type MonthlySummaryResponse = {
     categories: CategorySummary[];
 };
 
-const API_BASE_URL = "http://localhost:5171"; // adjust if needed
 
 function DashboardPage() {
     const [summary, setSummary] = useState<MonthlySummaryResponse | null>(null);
@@ -35,7 +34,7 @@ function DashboardPage() {
                 setError(null);
 
                 const response = await axios.get<MonthlySummaryResponse>(
-                    `${API_BASE_URL}/api/Dashboard/summary`,
+                    `/api/Dashboard/summary`,
                     {
                         params: { year, month },
                     }
